@@ -627,36 +627,6 @@ class ModuleConf(object):
                     "placeholder": "password"
                 }
             }
-        },
-        "aria2": {
-            "name": "Aria2",
-            "img_url": "../static/img/aria2.png",
-            "background": "bg-green",
-            "test_command": "app.downloader.client.aria2|Aria2",
-            "config": {
-                "host": {
-                    "id": "aria2.host",
-                    "required": True,
-                    "title": "IP地址",
-                    "tooltip": "配置IP地址，如为https则需要增加https://前缀",
-                    "type": "text",
-                    "placeholder": "127.0.0.1"
-                },
-                "port": {
-                    "id": "aria2.port",
-                    "required": True,
-                    "title": "端口",
-                    "type": "text",
-                    "placeholder": "6800"
-                },
-                "secret": {
-                    "id": "aria2.secret",
-                    "required": True,
-                    "title": "令牌",
-                    "type": "text",
-                    "placeholder": ""
-                }
-            }
         }
     }
 
