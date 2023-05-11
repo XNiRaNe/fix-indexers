@@ -13,6 +13,7 @@ from config import Config
 class Indexer(object):
     _indexer_schemas = []
     _client = None
+    builtin_client = None
     _client_type = None
     progress = None
     dbhelper = None
@@ -30,6 +31,7 @@ class Indexer(object):
         self.dbhelper = DbHelper()
         indexer = Config().get_config("pt").get('search_indexer') or 'builtin'
         self._client = self.__get_client(indexer)
+        self.builtin_client = self.__get_client('builtin')
         if self._client:
             self._client_type = self._client.get_type()
 
@@ -46,9 +48,9 @@ class Indexer(object):
         """
         获取当前索引器的索引站点
         """
-        if not self._client:
+        if not self.builtin_client:
             return []
-        return self._client.get_indexers(check=check)
+        return self.builtin_client.get_indexers(check=check)
 
     def get_user_indexer_dict(self):
         """
@@ -88,7 +90,7 @@ class Indexer(object):
         :param page: 页码
         :param keyword: 搜索关键字
         """
-        return self._client.list(index_id=index_id, page=page, keyword=keyword)
+        return self.builtin_client.list(index_id=index_id, page=page, keyword=keyword)
 
     def __get_client(self, ctype: [IndexerType, str], conf=None):
         return self.__build_class(ctype=ctype, conf=conf)
