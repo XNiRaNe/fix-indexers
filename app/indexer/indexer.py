@@ -48,6 +48,14 @@ class Indexer(object):
         """
         获取当前索引器的索引站点
         """
+        if not self._client:
+            return []
+        return self._client.get_indexers(check=check)
+
+    def get_builtin_indexers(self, check=False):
+        """
+        获取当前索引器的索引站点
+        """
         if not self.builtin_client:
             return []
         return self.builtin_client.get_indexers(check=check)
